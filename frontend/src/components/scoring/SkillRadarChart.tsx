@@ -45,7 +45,7 @@ export function SkillRadarChart({ progress, height = 280 }: SkillRadarChartProps
           dot={{ fill: SKILL_COLORS.speaking, r: 3 }}
         />
         <Tooltip
-          formatter={(value: number) => [value, 'Score']}
+          formatter={(value) => [typeof value === 'number' ? value : Number(value ?? 0), 'Score']}
           contentStyle={{
             background: 'var(--color-card)',
             border: '1px solid var(--color-border)',

@@ -12,9 +12,6 @@ interface ReadAloudProps {
   onAudioReady?: (blob: Blob, durationMs: number) => void
 }
 
-const PREP_MS   = 30_000
-const RECORD_MS = 40_000
-
 export function ReadAloud({ task, attemptId, onAudioReady }: ReadAloudProps) {
   const prepMs   = (task.metadata?.preparation_time_s  ?? 30) * 1000
   const recordMs = (task.metadata?.response_time_s     ?? 40) * 1000
