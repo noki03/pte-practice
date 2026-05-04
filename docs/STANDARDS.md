@@ -67,3 +67,15 @@ Writing code without tests is strictly prohibited. Every new feature or endpoint
 
 ### Frontend Tests (Vitest)
 - Ensure critical UI components and Zustand state logic have corresponding `.test.tsx` or `.test.ts` files covering edge state transitions.
+
+## 5. Git Workflow & Version Control
+Directly committing to the `develop` or `main` branches is **strictly prohibited** for feature work. 
+
+### Branching Strategy
+- **Feature Branches:** Before beginning work on a new checklist section or feature, you must create a new branch from `develop`.
+- **Naming Convention:** Use `feature/<phase-name>-<feature-name>` (e.g., `feature/phase-3-read-aloud-frontend`).
+- **Small Changes:** Only minor documentation typos or tiny bug fixes may be pushed directly to `develop`.
+
+### Pull Requests (PRs)
+- All feature branches must be merged into `develop` via a Pull Request.
+- **Claude Code Instruction:** When executing tasks, checkout a new branch first. When the feature and its tests are complete, use the `git-batch.ps1` skill to commit, push the branch to origin, and instruct the user to open a PR.

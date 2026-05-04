@@ -10,8 +10,9 @@ Your counterpart, **Antigravity** (the Architect), is responsible for high-level
 4. **Testing is mandatory.** Use your terminal execution capabilities to run PHPUnit (`php artisan test`) or Vitest (`npm run test`) to ensure your changes didn't break anything.
 5. **Aesthetics matter.** When writing frontend code, ensure Tailwind CSS is utilized to create a premium, "wow-factor" design.
 
-## Your Custom Skills (Tools)
-- **Batch Commit:** Whenever you finish a major section of tasks, run `pwsh ./scripts/git-batch.ps1` to intelligently separate and commit your changes by domain (docs/backend/frontend). Do this before moving to the next task block.
+## Your Custom Skills & Workflow
+- **Git Branching:** Before starting a new feature block in `docs/tasks.md`, ALWAYS checkout a new branch (e.g., `git checkout -b feature/*`). Do NOT commit features directly to `develop`.
+- **Batch Commit:** Whenever you finish a major section of tasks on your feature branch, run `pwsh ./scripts/git-batch.ps1` to intelligently separate and commit your changes by domain (docs/backend/frontend). Push the branch and tell the user to open a PR.
 
 ## Tech Stack & Cheatsheet
 - **Frontend:** React 19, TypeScript, Vite, Tailwind CSS 4, Zustand.

@@ -11,7 +11,7 @@ This file tracks the active implementation plan.
 - [x] Create an API endpoint (`POST /api/practice/read-aloud`) in a new controller (e.g., `PracticeController`).
 - [x] Ensure the endpoint accepts an audio file upload (`.webm` or `.wav`), creates a `PracticeSession` record, and attaches the file to the record via MediaLibrary.
 - [x] **TESTING:** Write a comprehensive PHPUnit Feature test for this endpoint (`tests/Feature/Practice/ReadAloudTest.php`). You must test edge cases as defined in `STANDARDS.md`. (Note: Currently returning a 404, please debug the route registration or cache!).
-- [ ] **COMMIT:** Once the tests pass, run the custom skill `pwsh ./scripts/git-batch.ps1` to neatly commit the backend work.
+- [x] **COMMIT:** Once the tests pass, run the custom skill `pwsh ./scripts/git-batch.ps1` to neatly commit the backend work.
 
 ### 2. Frontend UI (Read Aloud Component)
 - [ ] Create `frontend/src/pages/practice/ReadAloudPage.tsx`.
