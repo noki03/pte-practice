@@ -20,7 +20,7 @@ class AuthController extends Controller
         $result = $this->authService->register($request->validated());
 
         return response()->json([
-            'message' => 'Registration successful. Please verify your email.',
+            'message' => 'Registration successful.',
             'user'    => new UserResource($result['user']),
             'token'   => $result['token'],
         ], 201);
