@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Practice\ReadAloudController;
 use App\Http\Controllers\Api\V1\AttemptController;
 use App\Http\Controllers\Api\V1\ProgressController;
 use App\Http\Controllers\Api\V1\TaskController;
@@ -45,6 +46,15 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
 
     // Progress
     Route::get('progress', [ProgressController::class, 'index']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Practice modules (authenticated)
+|--------------------------------------------------------------------------
+*/
+Route::prefix('practice')->middleware('auth:sanctum')->group(function () {
+    Route::post('read-aloud', [ReadAloudController::class, 'store']);
 });
 
 /*
