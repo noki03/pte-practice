@@ -116,12 +116,21 @@ export function usePteRecorder({
     recorder.onstop = () => {
       const durationMs = Date.now() - startTimeRef.current
       const blob = new Blob(chunksRef.current, { type: mimeType || 'audio/webm' })
+
+      // Release mic immediately — don't wait for unmount
+      streamRef.current?.getTracks().forEach((t) => t.stop())
+      streamRef.current = null
+      if (audioCtxRef.current?.state !== 'closed') audioCtxRef.current?.close()
+      audioCtxRef.current = null
+      analyserRef.current = null
+
+      cancelAnimationFrame(animFrameRef.current)
+      if (elapsedIntervalRef.current) clearInterval(elapsedIntervalRef.current)
+
       setAudioBlob(blob)
+      setAudioLevel(0)
       setState('stopped')
       setActiveRecorder(null)
-      cancelAnimationFrame(animFrameRef.current)
-      setAudioLevel(0)
-      if (elapsedIntervalRef.current) clearInterval(elapsedIntervalRef.current)
       onComplete?.(blob, durationMs)
     }
 
@@ -152,8 +161,18 @@ export function usePteRecorder({
 
       if (preparationTimeMs > 0) {
         setState('preparing')
+        startTimeRef.current = Date.now()
         setElapsedMs(0)
-        prepTimerRef.current = setTimeout(() => startRecording(), preparationTimeMs)
+        elapsedIntervalRef.current = setInterval(() => {
+          setElapsedMs(Date.now() - startTimeRef.current)
+        }, 100)
+        prepTimerRef.current = setTimeout(() => {
+          if (elapsedIntervalRef.current) {
+            clearInterval(elapsedIntervalRef.current)
+            elapsedIntervalRef.current = null
+          }
+          startRecording()
+        }, preparationTimeMs)
       } else {
         startRecording()
       }
@@ -174,11 +193,22 @@ export function usePteRecorder({
       clearTimeout(autoStopRef.current)
       autoStopRef.current = null
     }
+    if (elapsedIntervalRef.current) {
+      clearInterval(elapsedIntervalRef.current)
+      elapsedIntervalRef.current = null
+    }
     if (recorderRef.current?.state === 'recording') {
       setState('stopping')
       recorderRef.current.stop()
+    } else {
+      // Stopped during prep — release mic and return to idle
+      streamRef.current?.getTracks().forEach((t) => t.stop())
+      streamRef.current = null
+      setActiveRecorder(null)
+      setState('idle')
+      setElapsedMs(0)
     }
-  }, [])
+  }, [setActiveRecorder])
 
   const reset = useCallback(() => {
     cleanup()

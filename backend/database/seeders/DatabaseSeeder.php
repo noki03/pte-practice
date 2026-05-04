@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             SkillSeeder::class,       // must run first (scoring_rules FK)
             ScoringRuleSeeder::class, // depends on skills
             TaskSeeder::class,        // independent
+            UserSeeder::class,        // test account
         ]);
     }
 }

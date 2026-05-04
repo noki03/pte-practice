@@ -22,7 +22,7 @@ class TaskResource extends JsonResource
             'metadata'             => $this->when(isset($this->metadata), $this->metadata),
             'requires_recording'   => $this->question_type->requiresAudioRecording(),
             'requires_playback'    => $this->question_type->requiresAudioPlayback(),
-            'created_at'           => $this->created_at->toIso8601String(),
+            'created_at'           => $this->created_at?->toIso8601String(),
         ];
     }
 }

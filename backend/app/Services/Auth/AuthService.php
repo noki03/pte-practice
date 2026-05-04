@@ -19,8 +19,6 @@ class AuthService
             'timezone' => $data['timezone'] ?? 'UTC',
         ]);
 
-        $user->sendEmailVerificationNotification();
-
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return compact('user', 'token');

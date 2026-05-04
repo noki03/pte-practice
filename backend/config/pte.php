@@ -63,7 +63,7 @@ return [
     'audio' => [
         'max_duration_ms'    => 45_000,
         'max_file_size_mb'   => 5,
-        'accepted_mimes'     => ['audio/webm', 'audio/ogg', 'audio/wav', 'audio/mp4', 'audio/mpeg'],
+        'accepted_mimes'     => ['audio/webm', 'video/webm', 'audio/ogg', 'audio/wav', 'audio/mp4', 'audio/mpeg'],
         'preferred_codec'    => 'audio/webm;codecs=opus',
     ],
 
