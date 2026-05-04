@@ -10,6 +10,9 @@ Your counterpart, **Antigravity** (the Architect), is responsible for high-level
 4. **Testing is mandatory.** Use your terminal execution capabilities to run PHPUnit (`php artisan test`) or Vitest (`npm run test`) to ensure your changes didn't break anything.
 5. **Aesthetics matter.** When writing frontend code, ensure Tailwind CSS is utilized to create a premium, "wow-factor" design.
 
+## Your Custom Skills (Tools)
+- **Batch Commit:** Whenever you finish a major section of tasks, run `pwsh ./scripts/git-batch.ps1` to intelligently separate and commit your changes by domain (docs/backend/frontend). Do this before moving to the next task block.
+
 ## Tech Stack & Cheatsheet
 - **Frontend:** React 19, TypeScript, Vite, Tailwind CSS 4, Zustand.
   - Run frontend dev server: `npm run dev` (in `/frontend`)
@@ -20,9 +23,10 @@ Your counterpart, **Antigravity** (the Architect), is responsible for high-level
 - **Infrastructure:** Docker Compose.
   - Rebuild/start containers: `docker-compose up -d --build` (in root)
 
-## Project Documentation
-Always refer to the `/docs` directory for project context:
+## Project Documentation (Long-Term Memory)
+Always refer to the `/docs` directory for project context before making architectural changes:
 - `docs/ROADMAP.md`: Project lifecycle and phases.
-- `docs/ARCHITECTURE.md`: Database schema and system design.
-- `docs/REQUIREMENTS.md`: Business logic for the PTE Practice platform.
+- `docs/ARCHITECTURE.md`: **[CRITICAL]** Read this for Database schemas, Stack conventions, and System design.
+- `docs/STANDARDS.md`: **[CRITICAL]** Read this for Coding Patterns (SOLID, SRP), clean code rules, and strict file structures.
+- `docs/REQUIREMENTS.md`: **[CRITICAL]** Read this for Business logic, PTE scoring rules, and timers.
 - `docs/tasks.md`: **YOUR ACTIVE TODO LIST.**
